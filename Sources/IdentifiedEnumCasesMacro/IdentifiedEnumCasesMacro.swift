@@ -18,9 +18,9 @@ public struct IdentifiedEnumCasesMacro: MemberMacro {
       }
       
       guard let enumCases: [SyntaxProtocol] = declaration.memberBlock
-        .children(viewMode: .fixedUp).filter({ $0.kind == .memberDeclList })
+        .children(viewMode: .fixedUp).filter({ $0.kind == .memberBlockItemList })
         .first?
-        .children(viewMode: .fixedUp).filter({ $0.kind == SyntaxKind.memberDeclListItem })
+        .children(viewMode: .fixedUp).filter({ $0.kind == .memberBlockItem })
         .flatMap({ $0.children(viewMode: .fixedUp).filter({ $0.kind == .enumCaseDecl })})
         .flatMap({ $0.children(viewMode: .fixedUp).filter({ $0.kind == .enumCaseElementList })})
         .flatMap({ $0.children(viewMode: .fixedUp).filter({ $0.kind == .enumCaseElement })})
